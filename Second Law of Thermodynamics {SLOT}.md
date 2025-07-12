@@ -1,0 +1,6 @@
+$\Delta S_T$ $\geq0$    **FOR SPONTANEOUS PROCESS**
+
+$\Delta S_T$ $\leq0$   **FOR NON-SPONTANEOUS PROCESS**  
+
+$\Delta S_T=0$   **AT EQUILIBRIUM i.e. FOR REVERSIBLE PROCESS**
+ 
