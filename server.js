@@ -66,6 +66,20 @@ app.delete("/tournaments/:id", (req, res) => {
   writeTournaments(tournaments); // save to file
   res.json({ message: `Tournament ${id} deleted` });
 });
+app.put("/tournaments/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const tournament = tournaments.find(t => t.id === id);
+  if (!tournament) return res.status(404).json({ error: "Tournament not found" });
+  Object.assign(tournament, req.body);
+  writeTournaments(tournaments);
+  res.json({ message: `Tournament ${id} updated`, tournament });
+});
+app.get("/tournaments/:id/players", (req, res) => {
+  const id = Number(req.params.id);
+  const tournament = tournaments.find(t => t.id === id);
+  if (!tournament) return res.status(404).json({ error: "Tournament not found" });
+  res.json(tournament.players);
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
