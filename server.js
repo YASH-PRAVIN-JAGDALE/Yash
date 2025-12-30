@@ -18,7 +18,9 @@ app.post("/create-tournament", (req, res) => {
   tournaments.push({ id, name, entryFee, prizePool, players: [] });
   res.json({ message: "Tournament created", id });
 });
-
+app.get("/tournaments", (req, res) => {
+  res.json(tournaments);
+});
 app.post("/join-tournament", (req, res) => {
   const { playerName, tournamentId } = req.body;
   const tournament = tournaments.find(t => t.id === tournamentId);
