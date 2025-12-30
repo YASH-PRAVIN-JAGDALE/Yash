@@ -29,6 +29,19 @@ app.post("/join-tournament", (req, res) => {
 app.get("/tournaments", (req, res) => {
   res.json(tournaments);
 });
+app.get("/tournaments/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const tournament = tournaments.find(t => t.id === id);
+  if (!tournament) return res.status(404).json({ error: "Tournament not found" });
+  res.json(tournament);
+});
+app.delete("/tournaments/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const exists = tournaments.some(t => t.id === id);
+  if (!exists) return res.status(404).json({ error: "Tournament not found" });
+  tournaments = tournaments.filter(t => t.id !== id);
+  res.json({ message: `Tournament ${id} deleted` });
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
